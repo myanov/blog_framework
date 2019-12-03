@@ -1,5 +1,7 @@
 <?php
 
+namespace vendor\core;
+
 
 class Router
 {
@@ -41,6 +43,7 @@ class Router
     {
         if(self::matchRoutes($url)) {
             $controller = self::upperToStr(self::$route['controller']);
+            $controller = 'app\controllers\\' . $controller;
             if(!isset(self::$route['action'])) {
                 self::$route['action'] = 'index';
             }
