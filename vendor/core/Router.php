@@ -32,6 +32,8 @@ class Router
                         $route[$k] = $v;
                     }
                 }
+                $route['controller'] = self::upperCamelStr($route['controller']);
+                isset($route['action']) ? $route['action'] = self::lowerCamelStr($route['action']) : '';
                 self::$route = $route;
                 return true;
             }
@@ -41,15 +43,15 @@ class Router
 
     public static function dispatch($url)
     {
+        $url = self::clearUrl($url);
         if(self::matchRoutes($url)) {
-            $controller = self::upperToStr(self::$route['controller']);
-            $controller = 'app\controllers\\' . $controller;
+            $controller = 'app\controllers\\' . self::$route['controller'];
             if(!isset(self::$route['action'])) {
                 self::$route['action'] = 'index';
             }
             if(class_exists($controller)) {
-                $cObj = new $controller;
-                $action = self::lowerToStr(self::$route['action']) . 'Action';
+                $cObj = new $controller(self::$route);
+                $action = self::lowerCamelStr(self::$route['action']) . 'Action';
                 if(method_exists($cObj, $action)) {
                     $cObj->$action();
                 } else {
@@ -64,13 +66,28 @@ class Router
         }
     }
 
-    protected static function upperToStr($str)
+    protected static function upperCamelStr($str)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $str)));
     }
 
-    protected static function lowerToStr($str)
+    protected static function lowerCamelStr($str)
     {
-        return lcfirst(self::upperToStr($str));
+        return lcfirst(self::upperCamelStr($str));
+    }
+
+    protected static function clearUrl($url)
+    {
+        $parts = explode('&', $url, 2);
+
+        if($parts[0] == '') {
+            return '';
+        }
+
+        if(false === strpos($parts[0], '=')) {
+            return rtrim($parts[0], '/');
+        } else {
+            return '';
+        }
     }
 }

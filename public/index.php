@@ -18,10 +18,11 @@ spl_autoload_register(function($class) {
     }
 });
 
-Router::add('pages/?(?P<action>[a-z-]+)?$', ['controller' => 'Post']);
+Router::add('page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'view']);
+Router::add('page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller' => 'Page']);
 
 //default
-Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
+Router::add('^$', ['controller' => 'Post', 'action' => 'index']);
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
 Router::dispatch($query);
