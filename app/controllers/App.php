@@ -6,10 +6,7 @@ namespace app\controllers;
 
 use vendor\core\base\Controller;
 
-class Page extends App
+class App extends Controller
 {
-    public function viewAction()
-    {
 
-    }
 }

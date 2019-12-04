@@ -4,15 +4,19 @@ namespace app\controllers;
 
 use vendor\core\base\Controller;
 
-class Post extends Controller
+class Post extends App
 {
     public function showAction()
     {
-        echo "Post::show";
+        $this->layout = false;
     }
 
     public function indexAction()
     {
-        echo "Post::index";
+//        $this->layout = 'test';
+//        $this->view = 'test';
+        $name = 'Andrei';
+        $title = 'Home';
+        $this->set(compact('name', 'title'));
     }
 }

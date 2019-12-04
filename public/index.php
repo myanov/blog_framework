@@ -9,6 +9,7 @@ define('WWW', __DIR__);
 define('ROOT', dirname(__DIR__));
 define('CORE', dirname(__DIR__) . '/vendor/core');
 define('APP', dirname(__DIR__) . '/app');
+define('LAYOUT', 'default');
 
 spl_autoload_register(function($class) {
     $file = ROOT . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class);
