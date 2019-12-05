@@ -45,7 +45,7 @@ class Router
     {
         $url = self::clearUrl($url);
         if(self::matchRoutes($url)) {
-            $controller = 'app\controllers\\' . self::$route['controller'];
+            $controller = 'app\controllers\\' . self::$route['controller'] . 'Controller';
             if(!isset(self::$route['action'])) {
                 self::$route['action'] = 'index';
             }

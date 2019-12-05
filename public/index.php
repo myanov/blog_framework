@@ -23,7 +23,7 @@ Router::add('page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'vi
 Router::add('page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller' => 'Page']);
 
 //default
-Router::add('^$', ['controller' => 'Post', 'action' => 'index']);
+Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
 Router::dispatch($query);
