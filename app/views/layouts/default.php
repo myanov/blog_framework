@@ -11,7 +11,25 @@
     <title><?= $title ?></title>
 </head>
 <body>
+
 <h1>Hello, world!</h1>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <?php foreach($menu as $cat): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="category/<?= $cat['id'] ?>"><?= $cat['title'] ?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    </div>
+</nav>
 <?= $content ?>
 
 <!-- Optional JavaScript -->

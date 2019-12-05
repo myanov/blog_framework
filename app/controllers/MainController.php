@@ -11,9 +11,9 @@ class MainController extends AppController
 {
     public function indexAction()
     {
-        $mObj = new Main();
-        $articles = $mObj->findAll();
+        $articles = \R::findAll('articles');
+        $menu = $this->menu;
         $title = 'Main';
-        $this->set(compact('articles', 'title'));
+        $this->set(compact('articles', 'title', 'menu'));
     }
 }
