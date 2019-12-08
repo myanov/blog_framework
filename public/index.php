@@ -20,6 +20,8 @@ spl_autoload_register(function($class) {
     }
 });
 
+new \vendor\core\App();
+
 Router::add('page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'view']);
 Router::add('page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller' => 'Page']);
 
