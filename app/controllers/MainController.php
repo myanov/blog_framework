@@ -4,9 +4,8 @@
 namespace app\controllers;
 
 
-use app\models\Main;
-use vendor\core\base\Model;
 use vendor\core\App;
+use vendor\core\base\View;
 
 class MainController extends AppController
 {
@@ -18,7 +17,7 @@ class MainController extends AppController
             App::$app->cache->set('articles', $articles);
         }
         $menu = $this->menu;
-        $title = 'Main';
-        $this->set(compact('articles', 'title', 'menu'));
+        View::setMeta('Главная страница', 'Описание', 'Ключевые слова');
+        $this->set(compact('articles', 'menu'));
     }
 }
